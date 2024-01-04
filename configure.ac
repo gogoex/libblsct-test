@@ -8,23 +8,21 @@ AC_PROG_CXX
 AC_PROG_RANLIB
 AC_PROG_LIBTOOL
 
+AC_CANONICAL_HOST
+
 AC_MSG_CHECKING([for Darwin])
-AC_LANG_PUSH([C])
-AC_TRY_COMPILE([
-    #include <sys/utsname.h>
-],[
-    struct utsname name;
-    uname(&name);
-    return (strstr(name.sysname, "Darwin") != NULL) ? 0 : 1;
-], [
+case "$host" in
+  *darwin*)
     AC_MSG_RESULT([yes])
     am_os_darwin=true
-], [
+    ;;
+  *)
     AC_MSG_RESULT([no])
     am_os_darwin=false
-])
-AC_LANG_POP([C])
+    ;;
+esac
 
 AM_CONDITIONAL([OS_DARWIN], [test "$am_os_darwin" = true])
 
-AC_OUTPUT()
+AC_OUTPUT
+echo "os_darwin = $am_os_darwin"
