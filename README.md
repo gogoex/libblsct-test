@@ -1,8 +1,11 @@
 # libblsct-test
 
-## How to build
-```
+1. copy `libblsct.a`, `libbls384_256.a` and `libmcl.a` to repository root.
+1. execute
+   ```
 $ ./autogen.sh
 $ ./configure
 $ make
-```
+$ ./src/driver
+   ```
+
